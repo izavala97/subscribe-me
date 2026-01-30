@@ -47,6 +47,12 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: .net-app
+
+      - name: Check if secrets are set
+        run: |
+          if [ -z "${{ secrets.AZUREAPPSERVICE_CLIENTID_B25E7482D1864DB295EEC0A94267D941 }}" ]; then echo "❌ CLIENT_ID is EMPTY"; else echo "✅ CLIENT_ID is set"; fi
+          if [ -z "${{ secrets.AZUREAPPSERVICE_TENANTID_2BD930D9E71E42A5B7C74DE249C7C1A3 }}" ]; then echo "❌ TENANT_ID is EMPTY"; else echo "✅ TENANT_ID is set"; fi
+          if [ -z "${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_3E723FD5ECA54E6C9F4C6C742B209996 }}" ]; then echo "❌ SUBSCRIPTION_ID is EMPTY"; else echo "✅ SUBSCRIPTION_ID is set"; fi
       
       - name: Login to Azure
         uses: azure/login@v2

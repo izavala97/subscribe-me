@@ -1,8 +1,115 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<!-- Hero Section -->
+<div class="text-center py-5">
+    <h1 class="display-4 fw-bold">
+        <i class="bi bi-stars text-primary"></i> Subscribe-Me
+    </h1>
+    <p class="lead text-muted mb-4">
+        Support your favorite creators and share exclusive content with your fans.
+    </p>
+    
+    @if (User.Identity?.IsAuthenticated != true)
+    {
+        <div class="d-flex justify-content-center gap-3">
+            <a asp-controller="Account" asp-action="Register" class="btn btn-primary btn-lg">
+                <i class="bi bi-rocket-takeoff"></i> Get Started
+            </a>
+            <a asp-controller="Feed" asp-action="Explore" class="btn btn-outline-secondary btn-lg">
+                <i class="bi bi-compass"></i> Explore
+            </a>
+        </div>
+    }
+    else
+    {
+        <div class="d-flex justify-content-center gap-3">
+            <a asp-controller="Post" asp-action="Create" class="btn btn-primary btn-lg">
+                <i class="bi bi-plus-circle"></i> Create Post
+            </a>
+            <a asp-controller="Feed" asp-action="Following" class="btn btn-outline-secondary btn-lg">
+                <i class="bi bi-people"></i> View Feed
+            </a>
+        </div>
+    }
+</div>
+
+<!-- Features Section -->
+<div class="row g-4 py-5">
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0">
+            <div class="card-body text-center p-4">
+                <div class="rounded-circle bg-primary bg-opacity-10 d-inline-flex align-items-center justify-content-center mb-3" 
+                     style="width: 80px; height: 80px;">
+                    <i class="bi bi-person-hearts text-primary" style="font-size: 2rem;"></i>
+                </div>
+                <h5 class="card-title">Support Creators</h5>
+                <p class="card-text text-muted">
+                    Subscribe to your favorite creators and get access to exclusive content, posts, and updates.
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0">
+            <div class="card-body text-center p-4">
+                <div class="rounded-circle bg-success bg-opacity-10 d-inline-flex align-items-center justify-content-center mb-3" 
+                     style="width: 80px; height: 80px;">
+                    <i class="bi bi-currency-dollar text-success" style="font-size: 2rem;"></i>
+                </div>
+                <h5 class="card-title">Earn Money</h5>
+                <p class="card-text text-muted">
+                    Set your own subscription price and earn recurring revenue from your dedicated fans.
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0">
+            <div class="card-body text-center p-4">
+                <div class="rounded-circle bg-warning bg-opacity-10 d-inline-flex align-items-center justify-content-center mb-3" 
+                     style="width: 80px; height: 80px;">
+                    <i class="bi bi-chat-heart text-warning" style="font-size: 2rem;"></i>
+                </div>
+                <h5 class="card-title">Connect Directly</h5>
+                <p class="card-text text-muted">
+                    Chat directly with creators and fans. Build a real community around your content.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- How It Works -->
+<div class="py-5 bg-light rounded-3 my-4 p-4">
+    <h2 class="text-center mb-4">How It Works</h2>
+    <div class="row g-4">
+        <div class="col-md-3 text-center">
+            <div class="rounded-circle bg-primary text-white d-inline-flex align-items-center justify-content-center mb-3" 
+                 style="width: 50px; height: 50px; font-size: 1.5rem;">1</div>
+            <h6>Create Account</h6>
+            <p class="text-muted small">Sign up with just your email - no password needed!</p>
+        </div>
+        <div class="col-md-3 text-center">
+            <div class="rounded-circle bg-primary text-white d-inline-flex align-items-center justify-content-center mb-3" 
+                 style="width: 50px; height: 50px; font-size: 1.5rem;">2</div>
+            <h6>Set Your Price</h6>
+            <p class="text-muted small">Choose your monthly subscription price (or keep it free).</p>
+        </div>
+        <div class="col-md-3 text-center">
+            <div class="rounded-circle bg-primary text-white d-inline-flex align-items-center justify-content-center mb-3" 
+                 style="width: 50px; height: 50px; font-size: 1.5rem;">3</div>
+            <h6>Share Content</h6>
+            <p class="text-muted small">Create posts with different visibility levels.</p>
+        </div>
+        <div class="col-md-3 text-center">
+            <div class="rounded-circle bg-primary text-white d-inline-flex align-items-center justify-content-center mb-3" 
+                 style="width: 50px; height: 50px; font-size: 1.5rem;">4</div>
+            <h6>Get Paid</h6>
+            <p class="text-muted small">Earn money from subscriptions and single purchases.</p>
+        </div>
+    </div>
 </div>

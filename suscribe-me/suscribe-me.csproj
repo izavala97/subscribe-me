@@ -7,4 +7,28 @@
     <RootNamespace>suscribe_me</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <!-- Entity Framework Core - SQLite for dev, SQL Server for production -->
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.0" />
+    <!-- PostgreSQL alternative (uncomment to use): -->
+    <!-- <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.0" /> -->
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+
+    <!-- Azure Services -->
+    <PackageReference Include="Azure.Communication.Email" Version="1.1.0" />
+    <PackageReference Include="Azure.Storage.Blobs" Version="12.23.0" />
+    <PackageReference Include="Azure.Identity" Version="1.14.2" />
+    <PackageReference Include="Microsoft.Azure.SignalR" Version="1.28.0" />
+
+    <!-- Stripe Payments -->
+    <PackageReference Include="Stripe.net" Version="46.2.1" />
+
+    <!-- Markdown Rendering -->
+    <PackageReference Include="Markdig" Version="0.38.0" />
+  </ItemGroup>
+
 </Project>

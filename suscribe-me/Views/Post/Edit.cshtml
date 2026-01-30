@@ -1,0 +1,103 @@
+@model suscribe_me.Controllers.EditPostViewModel
+@{
+    ViewData["Title"] = "Edit Post";
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card shadow-sm">
+            <div class="card-header">
+                <h4 class="mb-0"><i class="bi bi-pencil"></i> Edit Post</h4>
+            </div>
+            <div class="card-body">
+                <form asp-action="Edit" asp-route-id="@Model.Id" method="post">
+                    @Html.AntiForgeryToken()
+                    
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+                    
+                    <div class="mb-3">
+                        <label asp-for="Title" class="form-label">Title</label>
+                        <input asp-for="Title" class="form-control" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label asp-for="Content" class="form-label">Content</label>
+                        <textarea asp-for="Content" class="form-control" rows="12"></textarea>
+                        <div class="form-text">
+                            <i class="bi bi-markdown"></i> Supports Markdown formatting.
+                        </div>
+                        <span asp-validation-for="Content" class="text-danger"></span>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Visibility" class="form-label">Who can see this post?</label>
+                            <select asp-for="Visibility" class="form-select" id="visibilitySelect">
+                                <option value="0">🌍 Public - Anyone can view</option>
+                                <option value="1">👥 Followers Only - Users who follow you</option>
+                                <option value="2">⭐ Subscribers Only - Paid subscribers</option>
+                                <option value="3">💰 Single Purchase - One-time payment</option>
+                            </select>
+                            <span asp-validation-for="Visibility" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="col-md-6 mb-3" id="priceGroup">
+                            <label class="form-label">Price</label>
+                            <div class="input-group">
+                                <span class="input-group-text">$</span>
+                                <input type="number" class="form-control" id="priceInput" step="0.01" min="0.50" max="1000" 
+                                       value="@((Model.PriceCents / 100.0).ToString("F2"))" />
+                                <input type="hidden" asp-for="PriceCents" id="priceCents" />
+                            </div>
+                            <span asp-validation-for="PriceCents" class="text-danger"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label asp-for="PreviewText" class="form-label">Preview Text (optional)</label>
+                        <textarea asp-for="PreviewText" class="form-control" rows="2"></textarea>
+                        <div class="form-text">This text is shown to users who don't have access to the full content.</div>
+                        <span asp-validation-for="PreviewText" class="text-danger"></span>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between">
+                        <a asp-controller="Post" asp-action="View" asp-route-id="@Model.Id" class="btn btn-outline-secondary">
+                            <i class="bi bi-arrow-left"></i> Cancel
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-check"></i> Save Changes
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        const visibilitySelect = document.getElementById('visibilitySelect');
+        const priceGroup = document.getElementById('priceGroup');
+        const priceInput = document.getElementById('priceInput');
+        const priceCents = document.getElementById('priceCents');
+        
+        function updatePriceVisibility() {
+            if (visibilitySelect.value === '3') {
+                priceGroup.style.display = 'block';
+            } else {
+                priceGroup.style.display = 'none';
+            }
+        }
+        
+        visibilitySelect.addEventListener('change', updatePriceVisibility);
+        priceInput.addEventListener('input', function() {
+            const cents = Math.round(parseFloat(this.value || 0) * 100);
+            priceCents.value = cents;
+        });
+        
+        // Initialize
+        updatePriceVisibility();
+    </script>
+}

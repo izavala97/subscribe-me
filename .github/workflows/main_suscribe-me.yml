@@ -24,16 +24,19 @@ jobs:
           dotnet-version: '10.x'
 
       - name: Build with dotnet
-        run: dotnet build --configuration Release
+        run: dotnet build suscribe-me/suscribe-me.csproj --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish -c Release -o ${{ github.workspace }}/myapp
+        run: dotnet publish suscribe-me/suscribe-me.csproj -c Release -o ./myapp
+
+      - name: List published files
+        run: ls -la ./myapp
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: .net-app
-          path: ${{ github.workspace }}/myapp
+          path: ./myapp
 
   deploy:
     runs-on: ubuntu-latest

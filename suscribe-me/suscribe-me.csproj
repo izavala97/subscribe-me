@@ -11,6 +11,7 @@
     <!-- Entity Framework Core - SQLite for dev, SQL Server for production -->
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.0" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.2" />
     <!-- PostgreSQL alternative (uncomment to use): -->
     <!-- <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.0" /> -->
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.0">

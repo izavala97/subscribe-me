@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Data.SqlClient;
 using suscribe_me.Data;
 using suscribe_me.Hubs;
 using suscribe_me.Services;
@@ -19,7 +20,7 @@ if (builder.Environment.IsDevelopment())
 }
 else
 {
-    // Azure SQL Server for production
+    // Azure SQL Server for production with Entra ID authentication
     builder.Services.AddDbContext<ApplicationDbContext>(options =>
         options.UseSqlServer(connectionString, sqlOptions =>
         {

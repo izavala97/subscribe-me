@@ -14,6 +14,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read #This is required for actions/checkout
+    env:
+      DOTNET_ROOT: /home/runner/.dotnet
 
     steps:
       - uses: actions/checkout@v4
